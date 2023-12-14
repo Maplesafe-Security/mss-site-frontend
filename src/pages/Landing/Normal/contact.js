@@ -8,7 +8,8 @@ const Contact = (props) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        number:''
 
     });
     const [submitted, setSubmitted] = useState(false);
@@ -17,7 +18,7 @@ const Contact = (props) => {
     useEffect(()=>{
         setFormData({
             ...formData,
-            "message": props.plan == "" ? "Your message": props.plan ,
+            "message": props.plan == "" ? "": props.plan ,
         })
     },[props.plan])
     // Function to handle form input changes
@@ -63,7 +64,7 @@ const Contact = (props) => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ "email": formData.email, "ip": ipData["ip"], "name":formData.name, "message":formData.message }),
+                    body: JSON.stringify({ "email": formData.email, "ip": ipData["ip"], "name":formData.name, "message":formData.message, "number":formData.number}),
                 }
             )
 
@@ -144,6 +145,17 @@ const Contact = (props) => {
                                             </div>
                                         </Col>
                                     </Row>
+                                    <Row>
+                                    <Col lg={6}>
+                                            <div className="mb-4">
+                                                <label htmlFor="number" className="form-label fs-13">Phone Number (+1)</label>
+                                                <input name="number" id="number" type="tel"
+                                                    className="form-control bg-light border-light" placeholder="123-456-7890*" 
+                                                    value={formData.number}
+                                                    onChange={handleInputChange}/>
+                                            </div>
+                                        </Col>
+                                    </Row>
                                     {/* <Row>
                                         <Col lg={12}>
                                             <div className="mb-4">
@@ -168,7 +180,6 @@ const Contact = (props) => {
           rows="5"
           id="message"
           placeholder={"Your message"}
-        //   defaultValue={props.Plan}
           value={formData.message}
           onChange={handleInputChange}
         />
