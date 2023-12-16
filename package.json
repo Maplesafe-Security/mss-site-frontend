@@ -119,8 +119,5 @@
   },
   "resolutions": {
     "autoprefixer": "10.4.5"
-  },
-  "devDependencies": {
-    "@types/feather-icons": "^4.29.1"
   }
 }
